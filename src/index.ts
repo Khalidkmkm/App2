@@ -4,7 +4,7 @@ import { getAllProducts, getProductId, updateProductDescription } from "./databa
 import { exit } from "process";
 import { indexExists, createIndex, add, getDocumentIdOrUndefined, update, dropIndex } from "./searchengine/searchengine";
 
-let index_name = "products-13";
+let index_name = "products-28";
 
 
 await dropIndex(index_name); // ta bort indexet om det finns, annars skapar vi ett nytt
@@ -25,18 +25,17 @@ for(const product of  products){
   // create new!
    const searchObject = {
       "webid": product.id,
-      "title": product.title,
-      "description": product.description2,
-      "combinedsearchtext" : product.title + " " + product.description2 + " " + product.color2 + " " + product.categoryName,
+      "title": product.name,
+      "description": product.description,
+      "combinedsearchtext" : product.name + " " + product.description + " " + product.color + " " + product.categoryName,
       "price": product.price,
       "categoryName": product.categoryName,
-      "stockLevel": product.stockLevel,
       "color": product.color2,
       "categoryid": product.categoryId,
       "string_facet": [
         {
           "facet_name": "Color",
-          "facet_value": product.color2
+          "facet_value": product.color
         },
         {
           "facet_name": "Category",

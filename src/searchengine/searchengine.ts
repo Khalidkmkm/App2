@@ -1,8 +1,8 @@
 
 
 const url = "https://betasearch.systementor.se";
-const accessKey = "qLidn4cVx6dS8dhJ6zRCHw";
-const secretKey = "7JByYAMA4aMbRLtCH8WdBauMfu_ENQ";
+const accessKey = "e1ojMUqlsZJXK_-XHTt8VQ";
+const secretKey = "Eyyk5NkhV-lABybUAu52dqv4PF4H2g";
 
 export async function update(index_name:string,docid:string, product:any){
 

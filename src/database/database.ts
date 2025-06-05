@@ -3,13 +3,13 @@ import { connection } from "./connection";
 
 export interface ProductInfo extends RowDataPacket {
     id: number;
-    title:string;
+    name:string;
     price:number;
-    stockLevel:number;
-    color2:string;
-    description2:string;
+    popularityFactor:number;
+    color:string;
+    description:string;
     categoryId:number;
-    categoryName:string;
+    image_url:Boolean;
 }
 
 export interface ProductId extends RowDataPacket {
@@ -32,7 +32,12 @@ export async function getAllProducts() : Promise<ProductInfo[]>{
    // SELECT id * FROM Products WHERE title=productName
     const conn = await connection;
     
-    const [rows] = await conn.query<ProductInfo[]>("SELECT p.id,title, p.price,p.stockLevel,p.color2, p.description2, p.categoryId, c.name as categoryName from Products p JOIN Category c on c.id=p.categoryId")    
+    const [rows] = await conn.query<ProductInfo[]>(
+        `SELECT p.id, p.name, p.price, p.popularityFactor, p.color, p.description, p.category_id, c.name as categoryName
+         FROM Products p
+         JOIN categories c ON c.id = p.category_id`
+      );
+              
     return rows
 }
 
@@ -41,6 +46,6 @@ export async function updateProductDescription(id:number, description:string, co
     // vi hjar ju skapat en koklumn i Products spom heter description2
     // också en som heter color2
     const conn = await connection;
-    await conn.execute("UPDATE Products SET description2=?, color2=? WHERE id=?",[description,color,id])
+    await conn.execute("UPDATE Products SET description=?, color=? WHERE id=?",[description,color,id])
 
 }
