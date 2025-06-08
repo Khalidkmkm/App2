@@ -1,8 +1,9 @@
+import dotenv from "dotenv";
+dotenv.config();
 
-
-const url = "https://betasearch.systementor.se";
-const accessKey = "e1ojMUqlsZJXK_-XHTt8VQ";
-const secretKey = "Eyyk5NkhV-lABybUAu52dqv4PF4H2g";
+const url = process.env.URL!;
+const accessKey = process.env.ACCESS_KEY!;
+const secretKey = process.env.SECRET_KEY!;
 
 export async function update(index_name:string,docid:string, product:any){
 
